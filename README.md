@@ -14,38 +14,54 @@ step 1: clone project
 git clone https://github.com/JosMigue/blog.git
 
 step 2: install dependencies
+
 Open the project on your terminal and run the next command:
 composer install
 
 step 3: Lets clean cache and config
-run 
+
+run
+
 php artisan cache:clear
+
 php artisan config:clear
 
 step 4: create env file
+
 copy and paste the file called .env.example
 after it, rename that one as .env
 and configure your database conection
 
 step 5: Create app key
+
 run
+
 php artisan key:generate
+
 after it run:
+
 php artisan config:cache
 
 step 6: lets install npm dependencies
+
 run
+
 npm install
 
 step 7: lets compile resources
+
 run 
+
 npm run dev
 
 step 8: Migrate database and run seeders
+
 run
+
 php artisan migrate --seed
 
 step 9: run the app
+
 php artisan serve
 or if you have a installed server you can use it
 
