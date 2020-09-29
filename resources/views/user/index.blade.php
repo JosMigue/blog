@@ -8,7 +8,7 @@
   <x-slot name="slot">
     <div class="mt-5 lg:container lg:mx-auto">
       @if (session('successMessage'))
-        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500">
+        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-400">
           <span class="text-xl inline-block mr-5 align-middle">
             <i class="fa fa-check"></i>
           </span>
@@ -83,7 +83,11 @@
                         </span>
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                        Admin
+                        @if ($user->role == 1)
+                          Admin
+                        @else
+                          Editor  
+                        @endif
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                         <div class="flex justify-center ml-6 z-10">

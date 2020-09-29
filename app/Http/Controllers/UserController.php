@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 Use App\Http\Requests\CreateUserRequest;
+Use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -37,14 +38,18 @@ class UserController extends Controller
     //
   }
 
-  public function edit($id)
+  public function edit(User $user)
   {
-    //
+    return view('user.edit', compact('user'));
   }
 
-  public function update(Request $request, $id)
+  public function update(UpdateUserRequest $request, User $user)
   {
-    //
+    if($user->update($request->validated())){
+      return redirect()->route('users.index')->with('successMessage', __('User has been updated succesfully'));
+    }else{
+      return redirect()->route('users.index')->with('erroMessage', __('Something went wrong, try again later'));
+    }
   }
 
   public function destroy($id)

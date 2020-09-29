@@ -7,17 +7,17 @@
     </x-slot>
     <x-slot name="slot">
       <div class="mt-5 lg:container lg:mx-auto">
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-4 px-3" />
         <form method="POST" action="{{route('users.store')}}">
           @csrf
           <div class="flex flex-row flex-wrap mt-4">
             <div class="flex-column px-3 w-full lg:pr-3 lg:w-1/2">
               <x-jet-label value="{{ __('Name') }}" />
-              <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="old('name')"  autofocus autocomplete="name" />
+              <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="old('name')"  autofocus autocomplete="name"  required />
             </div>
             <div class="flex-column px-3 w-full lg:pl-3 lg:w-1/2">
               <x-jet-label value="{{ __('E-Mail Address') }}" />
-              <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')"  />
+              <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')"   required />
             </div>
           </div>
           <div>
@@ -25,18 +25,18 @@
           <div class="flex flex-row flex-wrap mt-4">
             <div class="flex-column px-3 w-full lg:pr-3 lg:w-1/2">
               <x-jet-label value="{{ __('Password') }}" />
-              <x-jet-input class="block mt-1 w-full" type="password" name="password"  autocomplete="new-password" />
+              <x-jet-input class="block mt-1 w-full" type="password" name="password"  autocomplete="new-password"  required />
             </div>
             <div class="flex-column px-3 w-full lg:pl-3 lg:w-1/2">
               <x-jet-label value="{{ __('Confirm Password') }}" />
-              <x-jet-input class="block mt-1 w-full" type="password" name="password_confirmation"  autocomplete="new-password" />
+              <x-jet-input class="block mt-1 w-full" type="password" name="password_confirmation"  autocomplete="new-password"  required />
             </div>
           </div>
           <div class="flex flex-row mt-4">
             <div class="flex-column px-3 w-full lg:pr-3 lg:w-1/2">
               <x-jet-label value="{{ __('Role') }}" />
               <div class="inline-block relative w-full">
-                <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" name="role">
+                <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline text-gray-500" name="role" required >
                   <option value="" disabled selected>{{__('Select role')}}</option>
                   <option value="1">Admin</option>
                   <option value="2">Editor</option>
@@ -47,7 +47,7 @@
               </div>
             </div>
           </div>
-          <div class="flex items-center justify-end mt-4">
+          <div class="flex items-center justify-end mt-4 pr-3">
             <x-jet-button class="ml-4">
               {{ __('Add') }}
             </x-jet-button>
