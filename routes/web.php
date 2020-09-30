@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +21,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostsController@index')->name('posts');
+Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostController@index')->name('posts');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('posts/create', function(){
+    return view('posts.create');
+})->name('create');
+
+
+
+Route::resource('post', 'PostController');
+
+Route::post('/add', 'PostController@store')->name('add');
+Route::post('/update', 'PostController@update')->name('update');
+Route::post('/delete', 'PostController@destroy')->name('delete');
