@@ -52,8 +52,16 @@ class UserController extends Controller
     }
   }
 
-  public function destroy($id)
+  public function destroy(User $user)
   {
-    //
+    if($user->role != 1){
+      if($user->delete()){
+        return redirect()->route('users.index')->with('successMessage', __('User has been deleted succesfully'));
+      }else{
+        return redirect()->route('users.index')->with('erroMessage', __('Something went wrong, try again later'));
+      }
+    }else{
+      return redirect()->route('users.index')->with('infoMessage', __('An admin can not be deleted'));
+    }
   }
 }
