@@ -37,9 +37,11 @@
           </div>
         @endif
         <div class="flex items-center justify-end mt-4 pr-3">
-          <x-jet-danger-button class="ml-4" type="button">
-            {{ __('Cancel') }}
-          </x-jet-danger-button>
+          <x-button-link url="{{route('users.index')}}">
+            <x-slot name="slot">
+              {{__('Nevermind')}}
+            </x-slot>
+          </x-button-link>
           <x-jet-button class="ml-4">
             {{ __('Update') }}
           </x-jet-button>
