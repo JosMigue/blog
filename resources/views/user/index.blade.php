@@ -95,12 +95,14 @@
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                         <div class="flex justify-center ml-6 z-10">
-                          <a href="{{route('users.edit', $user->id)}}" class="mx-1 py-2 px-3 rounded bg-yellow-300 text-white hover:text-indigo-900"><i class="fa fa-pencil"></i></a>
-                          <form method="POST" action="{{route('users.destroy',$user->id)}}">
-                            @csrf 
-                            @method('DELETE')
-                            <button type="sumbit" class="mx-1 py-2 px-3 rounded bg-red-600 text-white hover:text-red-900"><i class="fa fa-trash"></i></button>
-                          </form>
+                          @if ($user->role!=1)
+                            <a href="{{route('users.edit', $user->id)}}" class="mx-1 py-2 px-3 rounded bg-yellow-300 text-white hover:text-indigo-900"><i class="fa fa-pencil"></i></a>
+                            <form method="POST" action="{{route('users.destroy',$user->id)}}">
+                              @csrf 
+                              @method('DELETE')
+                              <button type="sumbit" class="mx-1 py-2 px-3 rounded bg-red-600 text-white hover:text-red-900"><i class="fa fa-trash"></i></button>
+                            </form>
+                          @endif
                         </div>
                       </td>
                     </tr>

@@ -15,7 +15,7 @@ class UserController extends Controller
 
   public function index()
   {
-    $users = User::latest()->paginate(5);
+    $users = User::where('id', '!=', auth()->id())->latest()->paginate(5);
     return view('user.index', compact('users'));
   }
 
@@ -31,11 +31,6 @@ class UserController extends Controller
     }else{
       return redirect()->route('users.index')->with('erroMessage', __('Something went wrong, try again later'));
     }
-  }
-
-  public function show($id)
-  {
-    //
   }
 
   public function edit(User $user)
