@@ -34,3 +34,7 @@ Route::resource('post', 'PostController');
 Route::post('/add', 'PostController@store')->name('add');
 Route::post('/update', 'PostController@update')->name('update');
 Route::post('/delete', 'PostController@destroy')->name('delete');
+Route::get('/other', function () {
+    return view('posts.other');
+})->name('other');
+
