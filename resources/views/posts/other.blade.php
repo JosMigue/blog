@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Other') }} 
+            {{ __('My Posts') }} 
         </h2>
     </x-slot>
 
@@ -9,20 +9,40 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                    <img class="w-full" src="https://demos.creative-tim.com/tailwindcss-starter-project/_next/static/images/team-3-800x800-19201574ed51f77138a739c0452ca104.jpg" alt="Sunset in the mountains">
-                    <div class="px-6 py-4">
-                      <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                      <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="px-6 pt-4 pb-2">
-                        <button style="float:right;" class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease">
-                            see more
-                          </button>
-                    </div>
-                  </div>
+                <table class="table-auto">
+                    <thead>
+                      <tr>
+                        <th class="px-4 py-2">Image</th>
+                        <th class="px-4 py-2">Title</th>
+                        <th class="px-4 py-2">Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($posts as $post)
+                      <tr>
+                        <td class="border px-4 py-2"><img style="height: 100px; width:200px;" class="w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains"></td>
+                        <td class="border px-4 py-2">{{$post->title}}</td>
+                        <td class="border px-4 py-2">
+
+                            <form action="{{url('delete/' . $post->id) }}" method="POST">
+                                @csrf
+                                
+                                <button style="width:80px; margin-left:10px;"  class="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" style="transition: all .15s ease;">
+                                    Delete
+                                </button>
+                
+                              </form>
+                              
+
+                          <a href="/post/{{$post->id}}/edit" style=" margin:10px; width:80px;"  class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" style="transition: all .15s ease;">
+                            Edit
+                          </a>
+
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
 
 
             </div>

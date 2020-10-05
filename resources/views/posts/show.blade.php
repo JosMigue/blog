@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <a href="/posts" class="btn btn-default">Go Back</a>
                 <hr>
+                <img class="w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
                  <h1>{{$post->title}}</h1>
                  <p>
                    {{$post->body}}

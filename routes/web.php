@@ -23,6 +23,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostController@index')->name('posts');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/other', 'PostController@other')->name('other');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('posts/create', function(){
     return view('posts.create');
 })->name('create');
@@ -33,8 +35,7 @@ Route::resource('post', 'PostController');
 
 Route::post('/add', 'PostController@store')->name('add');
 Route::post('/update', 'PostController@update')->name('update');
-Route::post('/delete', 'PostController@destroy')->name('delete');
-Route::get('/other', function () {
-    return view('posts.other');
-})->name('other');
+Route::post('/delete/{id}', 'PostController@destroy')->name('delete');
+
+
 

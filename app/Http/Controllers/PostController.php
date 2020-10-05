@@ -20,6 +20,12 @@ class PostController extends Controller
         return view('posts.posts')->with('posts',$posts);
     }
 
+    public function other()
+    {
+        $posts = Post::all();
+        return view('posts.other')->with('posts',$posts);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -144,10 +150,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {       
         
-        $id = $request->input('id');
+      //  $id = $request->input('id');
         $post = Post::find($id);
 
         if($post->image != 'noimage.jpg'){
