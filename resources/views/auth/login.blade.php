@@ -1,58 +1,3 @@
-{{-- <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
-        <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
-
-        @if (session('loginMessage'))
-            <div class="mb-4 font-bold text-sm text-white text-center bg-indigo-500 rounded-lg p-4">
-                {{ session('loginMessage') }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-jet-label value="{{ __('Email') }}" />
-                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label value="{{ __('Password') }}" />
-                <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout> --}}
-<!-- component -->
 <x-guest-layout>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full">
@@ -64,8 +9,25 @@
       </div>
       <x-jet-validation-errors></x-jet-validation-errors>
       <form class="mt-8"method="POST" action="{{ route('login') }}">
+        @if (session('status'))
+          <x-alert class="bg-blue-700" iconClass="fa fa-info">
+            <x-slot name="boldMessage">
+            </x-slot>
+            <x-slot name="message">
+              {{session('status')}}
+            </x-slot>
+          </x-alert>
+        @endif
+        @if (session('loginMessage'))
+          <x-alert class="bg-blue-600" iconClass="fa fa-info">
+            <x-slot name="boldMessage">
+            </x-slot>
+            <x-slot name="message">
+              {{session('loginMessage')}}
+            </x-slot>
+          </x-alert>
+        @endif
         @csrf
-        {{-- <input type="hidden" name="remember" value="true"> --}}
         <div class="rounded-md shadow-sm">
           <div>
             <input autofocus aria-label="{{__('E-Mail Address')}}" name="email" type="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="{{__('E-Mail Address')}}" value="{{old('email')}}">
