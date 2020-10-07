@@ -15,6 +15,7 @@
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
+        <script src="{{ asset('js/closeAlerts.js') }}"></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
