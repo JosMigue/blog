@@ -8,7 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
            
-             
+          @if ($errors->any())
+          <ul>
+              @foreach($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      @endif
                 <form action="/add" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     @csrf
                   <div class="mb-4">
@@ -26,7 +32,7 @@
                   <div class="mb-4">
                     <label class="block">
                         <span class="text-gray-700">Image</span><br>
-                        <input class="" name="cover_image" type="file">
+                        <input class="" name="image" type="file">
                       </label>
                   </div>
                   

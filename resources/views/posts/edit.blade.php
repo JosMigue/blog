@@ -27,7 +27,7 @@
                   <div class="mb-4">
                     <label class="block">
                         <span class="text-gray-700">Image</span><br>
-                        <input class="" name="cover_image" type="file">
+                        <input class="" name="image" type="file">
                       </label>
                   </div>
 
@@ -36,8 +36,6 @@
                     <div class="md:w-2/3">
 
                       
-        
-                      </form>
                      
                       <button style="float: right;" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                         Update

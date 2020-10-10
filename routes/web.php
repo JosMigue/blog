@@ -23,7 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostController@index')->name('posts');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/other', 'PostController@other')->name('other');
+Route::middleware(['auth:sanctum', 'verified'])->get('/myposts', 'PostController@mypost')->name('myposts');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('posts/create', function(){
     return view('posts.create');
