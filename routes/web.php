@@ -21,21 +21,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostController@index')->name('posts');
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostController@index')->name('posts'); */
+/* Route::middleware(['auth:sanctum', 'verified'])->get('posts/create', function(){
+    return view('posts.create');
+})->name('create'); */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/myposts', 'PostController@mypost')->name('myposts');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('posts/create', function(){
-    return view('posts.create');
-})->name('create');
 
 
 
-Route::resource('post', 'PostController');
-
-Route::post('/add', 'PostController@store')->name('add');
-Route::post('/update', 'PostController@update')->name('update');
-Route::post('/delete/{id}', 'PostController@destroy')->name('delete');
-
-
-
+Route::resource('posts', 'PostController');

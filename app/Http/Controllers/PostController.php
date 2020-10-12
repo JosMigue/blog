@@ -14,18 +14,18 @@ class PostController extends Controller
   public function index()
   {
     $posts = Post::all();
-    return view('posts.posts')->with('posts',$posts);
+    return view('posts.index', compact('posts'));
   }
 
   public function mypost()
   {
     $posts = Post::all();
-    return view('posts.myposts')->with('posts',$posts);
+    return view('posts.myposts', compact('posts'));
   }
 
   public function create()
   {
-    
+    return view('posts.create');
   }
 
   public function store(CreatePostRequest $request)
@@ -68,7 +68,7 @@ class PostController extends Controller
         $post->image = $fileNameToStore;
     }
     $post->save();
-    return redirect('/posts');
+    return redirect()->route('posts.index');
   }
 
   public function destroy($id)
