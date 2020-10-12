@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }} 
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
-                        {{ __('Posts') }} 
+                        <i class="fa fa-book" aria-hidden="true"></i>{{ __('Posts') }} 
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('posts.create') }}" :active="request()->routeIs('posts.create')">
                         {{ __('Add Post') }} 
@@ -123,7 +123,7 @@
             </x-jet-responsive-nav-link>
 
             <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
-                {{ __('Posts') }} 
+                <i class="fa fa-book" aria-hidden="true"></i>{{ __('Posts') }} 
             </x-jet-responsive-nav-link>
 
             <x-jet-responsive-nav-link href="{{ route('posts.create') }}" :active="request()->routeIs('posts.create')">

@@ -11,7 +11,9 @@
         <div class="flex flex-wrap">
           @foreach($posts as $post)
           <div class="max-w-sm rounded overflow-hidden shadow-lg m-2">
-            <img class="object-cover h-48 w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
+            <a class="hover:decoration-none" href="{{route('posts.show', $post->id)}}">
+              <img class="object-cover h-48 w-full transform scale-75 hover:transform hover:scale-100 transition duration-500" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
+            </a>
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2"><a >{{ $post->title }}</a></div>
               <p class="text-gray-700 text-base">
@@ -19,9 +21,9 @@
               </p>
             </div>
             <div class="px-6 pt-4 pb-2">
-              <small>Written on {{ $post->created_at->format('Y-m-d')}}</small>
-              <a href="{{route('posts.show', $post->id)}}" class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 float-right">
-                see more
+              <small>{{__('Written')}} {{ $post->created_at->diffForHumans()}}</small>
+              <a href="{{route('posts.show', $post->id)}}" class="text-pink-500 hover:text-pink-700 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 float-right">
+                {{__('See More')}}
               </a>
             </div>
           </div>
