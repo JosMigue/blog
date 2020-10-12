@@ -12,10 +12,10 @@
                 @if (count($posts) >= 1)
 
 
-                <div class="box">
+                <div class="flex flex-wrap">
                     @foreach($posts as $post)
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg" style="margin: 10px;">
-                        <img class="w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg m-2">
+                        <img class="object-cover h-48 w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2"><a >{{ $post->title }}</a></div>
                           <p class="text-gray-700 text-base">
@@ -24,17 +24,13 @@
                         </div>
                         <div class="px-6 pt-4 pb-2">
                             <small>Written on {{ $post->created_at }}</small>
-                            <a href="/post/{{$post->id}}" style="float:right;" class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1"  style="transition: all .15s ease">
+                            <a href="/post/{{$post->id}}" class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 float-right">
                                 see more
                             </a>
                         </div>
                       </div>
                       @endforeach
-                      </div>
-
-                      <!--
-                       
-                     -->          
+                      </div>           
                 @else
                   <h1> no posts to show</h1>
                 @endif  

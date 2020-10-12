@@ -11,7 +11,9 @@
                 <form action="/update" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     @csrf
                 <input type="hidden" value="{{$post->id}}" name="id">
-                <img class="w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
+                <div class="bg-gray-300">
+                  <img class="object-none h-screen w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains">
+                </div>
                   <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                       title
@@ -37,7 +39,7 @@
 
                       
                      
-                      <button style="float: right;" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                      <button  class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded float-right" type="submit">
                         Update
                          </button>
                     

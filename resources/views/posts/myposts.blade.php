@@ -20,21 +20,21 @@
                     <tbody>
                         @foreach($posts as $post)
                       <tr>
-                        <td class="border px-4 py-2"><img style="height: 100px; width:200px;" class="w-full" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains"></td>
+                        <td class="border px-4 py-2"><img  class="object-cover h-48 w-2/3" src="/storage/cover_images/{{$post->image}}" alt="Sunset in the mountains"></td>
                         <td class="border px-4 py-2">{{$post->title}}</td>
                         <td class="border px-4 py-2">
 
                             <form action="{{url('delete/' . $post->id) }}" method="POST">
                                 @csrf
                                 
-                                <button style="width:80px; margin-left:10px;"  class="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" style="transition: all .15s ease;">
+                                <button class="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-20 m-2" type="submit" >
                                     Delete
                                 </button>
                 
                               </form>
                               
 
-                          <a href="/post/{{$post->id}}/edit" style=" margin:10px; width:80px;"  class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" style="transition: all .15s ease;">
+                          <a href="/post/{{$post->id}}/edit" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-20 m-2" type="button">
                             Edit
                           </a>
 
