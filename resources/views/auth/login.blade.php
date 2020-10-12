@@ -7,7 +7,7 @@
           {{__('Sign in to your account')}}
         </h2>
       </div>
-      <x-jet-validation-errors></x-jet-validation-errors>
+      <x-jet-validation-errors />
       <form class="mt-8"method="POST" action="{{ route('login') }}">
         @if (session('status'))
           <x-alert class="bg-blue-700" iconClass="fa fa-info">

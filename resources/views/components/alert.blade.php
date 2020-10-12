@@ -6,7 +6,7 @@
   <span class="inline-block align-middle lg:mr-8 text-md lg:text-lg">
     <b class="capitalize">{{  $boldMessage }}</b> {{  $message  }}
   </span>
-  <button class="absolute bg-transparent text-md lg:text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
+  <button type="button" class="absolute bg-transparent text-md lg:text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
     <span>×</span>
   </button>
 </div>
