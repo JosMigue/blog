@@ -6,11 +6,16 @@ use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\CreateUpdatePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\User;
 use App\Models\Post;
 
 class PostController extends Controller
 {
+
+  public function __construct(){
+    $this->middleware('auth');
+}
+
   public function index()
   {
     $posts = Post::all();
@@ -20,6 +25,11 @@ class PostController extends Controller
   public function mypost()
   {
     $posts = Post::all();
+
+  //  $user = User::find(auth()->id());
+    
+
+
     return view('posts.myposts', compact('posts'));
   }
 
