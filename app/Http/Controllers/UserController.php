@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 Use App\Http\Requests\CreateUserRequest;
 Use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,11 +27,20 @@ class UserController extends Controller
 
   public function store(CreateUserRequest $request)
   {
-    if(User::create($request->validated())){
+    if(User::create($this->createUserArray($request))){
       return redirect()->route('users.index')->with('successMessage', __('User has been added succesfully'));
     }else{
       return redirect()->route('users.index')->with('erroMessage', __('Something went wrong, try again later'));
     }
+  }
+
+  private function createUserArray($request){
+    return $userArray = [
+      'name' => $request->validated()['name'] ,
+      'email' => $request->validated()['email'],
+      'password' => Hash::make($request->validated()['password']),
+      'role' => $request->validated()['role']
+    ];
   }
 
   public function edit(User $user)

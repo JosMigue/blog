@@ -1,5 +1,5 @@
 <x-app-layout>
-  @section('title',__('Users list'))
+  @section('title',__('Users'))
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       {{ __('Users list') }}
