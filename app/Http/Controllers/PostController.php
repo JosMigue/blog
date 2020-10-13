@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\CreateUpdatePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
 
@@ -13,7 +14,7 @@ class PostController extends Controller
 {
   public function index()
   {
-    $posts = Post::all();
+    $posts = Post::with('user')->paginate(3);
     return view('posts.index', compact('posts'));
   }
 
@@ -35,7 +36,7 @@ class PostController extends Controller
     $extension = $request->file('image')->getClientOriginalExtension();
     $fileNameToStore = $filename .'_'.time().'.'.$extension;
     $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
-    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore]) );
+    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' => Auth::user()->id]));
     return redirect('/posts');
   }
 

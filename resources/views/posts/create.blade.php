@@ -22,6 +22,7 @@
           <div class="mb-4">
             <label class="text-gray-700" for="image">{{__('Image')}}</label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="image" type="file">
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
           </div>
           <div class="flex md:justify-end justify-center">
             <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">

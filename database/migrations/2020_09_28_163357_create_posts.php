@@ -17,7 +17,8 @@ class CreatePosts extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->mediumText('body'); 
+            $table->mediumText('body');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
