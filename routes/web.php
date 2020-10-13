@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -22,3 +22,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('users','UserController')->except('show');
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/posts', 'PostController@index')->name('posts'); */
+/* Route::middleware(['auth:sanctum', 'verified'])->get('posts/create', function(){
+    return view('posts.create');
+})->name('create'); */
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/myposts', 'PostController@mypost')->name('myposts');
+
+
+
+
+Route::resource('posts', 'PostController');
