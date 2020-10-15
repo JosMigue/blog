@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Post;
+use App\Notifications\SendEmailUpdateEditors;
 
 class PostController extends Controller
 {
 
   public function __construct(){
     $this->middleware('auth');
+    $this->middleware('checkrole', ['only' => 'destroy']);
 }
 
   public function index()
@@ -40,12 +42,17 @@ class PostController extends Controller
 
   public function store(CreatePostRequest $request)
   {
+
+   
     $filenameWithExt = $request->file('image')->getClientOriginalName();
     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
     $extension = $request->file('image')->getClientOriginalExtension();
     $fileNameToStore = $filename .'_'.time().'.'.$extension;
     $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
-    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore]) );
+
+
+
+    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' =>  auth()->user()->id ]) );
     return redirect('/posts');
   }
 
@@ -63,6 +70,7 @@ class PostController extends Controller
 
   public function update(CreateUpdatePostRequest $request)
   {
+
     if($request->hasFile('image')){
       $filenameWithExt = $request->file('image')->getClientOriginalName();
       $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -74,19 +82,40 @@ class PostController extends Controller
     $post = Post::find($id);
     $post->title = $request->input('title');
     $post->body = $request->input('body');
+    $post->user_id = auth()->user()->id;
     if($request->hasFile('image')){
         $post->image = $fileNameToStore;
     }
+    
     $post->save();
+
+   
+    $user = User::find(auth()->id());
+    if($user->role == 2){
+      $this->sendEmailNotificationUpdate($user);
+    }
+
+   
+
     return redirect()->route('posts.index');
   }
 
   public function destroy($id)
-  {       
+  {  
+           
       $post = Post::find($id);
       Storage::delete('public/cover_images/'.$post->image);
       $post->delete();
       return redirect('/myposts');
+
+  }
+
+  private function sendEmailNotificationUpdate($user){
+
+    
+    
+  
+    $user->notify(new SendEmailUpdateEditors());
 
   }
 }

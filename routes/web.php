@@ -33,3 +33,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/myposts', 'PostController
 
 
 Route::resource('posts', 'PostController');
+Route::delete('delete/{id}', 'PostController@destroy');
+;

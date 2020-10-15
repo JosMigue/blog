@@ -25,6 +25,7 @@
                     @if (Auth::user()->role == 1)
                     <form action="{{url('delete/' . $post->id) }}" method="POST">
                       @csrf
+                      @method('DELETE')
                       <button class="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-20 m-2" type="submit" >
                         {{__('Delete')}}
                       </button>
