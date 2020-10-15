@@ -52,8 +52,9 @@ class PostController extends Controller
     return view('posts.edit')->with('post', $post);
   }
 
-  public function update(CreateUpdatePostRequest $request)
+  public function update(CreateUpdatePostRequest $request, Post $post)
   {
+    $fileNameToStore = $post->image;
     if($request->hasFile('image')){
       $filenameWithExt = $request->file('image')->getClientOriginalName();
       $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -61,15 +62,17 @@ class PostController extends Controller
       $fileNameToStore = $filename .'_'.time().'.'.$extension;
       $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
     }
-    $id = $request->input('id');
-    $post = Post::find($id);
-    $post->title = $request->input('title');
-    $post->body = $request->input('body');
-    if($request->hasFile('image')){
-        $post->image = $fileNameToStore;
-    }
-    $post->save();
+    $dataArrayPost = $this->buildArrayPostOnUpdate($request, $fileNameToStore);
+    $post->update($dataArrayPost);
     return redirect()->route('posts.index');
+  }
+
+  private function buildArrayPostOnUpdate($request, $fileNameToStore){
+    return $postDataToUpdate = [
+      'title' => $request->validated()['title'],
+      'body' => $request->validated()['body'],
+      'image' => $fileNameToStore
+    ];
   }
 
   public function destroy($id)

@@ -26,10 +26,13 @@
               <label class="w-64 flex flex-col items-center px-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-gray-200 cursor-pointer hover:bg-blue-700 hover:text-white">
                   <i class="fa fa-upload" aria-hidden="false"></i>
                   <span class="mt-2 text-base leading-normal">{{__('Select an image')}}</span>
-                  <input type='file' class="hidden" name="image"/>
+                  <input type='file' class="hidden" name="image" onchange="readUploadedImage(this)"/>
               </label>
             </div>
           </div>
+        </div>
+        <div class="flex flex-row justify-center hidden" id="image-preview-container">
+          <img id="blah" src="#" alt="Uploaded image preview" />
         </div>
         <div class="flex md:justify-end justify-center">
           <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
@@ -38,4 +41,7 @@
         </div>  
       </form>          
     </div>
+    @section('scripts')
+      <script src="{{asset('js/showUploadedImage.js')}}"></script>
+    @endsection
 </x-app-layout>
