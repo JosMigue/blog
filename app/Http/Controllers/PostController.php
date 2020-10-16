@@ -71,6 +71,8 @@ class PostController extends Controller
   public function update(CreateUpdatePostRequest $request)
   {
 
+    
+    
     if($request->hasFile('image')){
       $filenameWithExt = $request->file('image')->getClientOriginalName();
       $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -82,17 +84,19 @@ class PostController extends Controller
     $post = Post::find($id);
     $post->title = $request->input('title');
     $post->body = $request->input('body');
-    $post->user_id = auth()->user()->id;
     if($request->hasFile('image')){
         $post->image = $fileNameToStore;
     }
-    
     $post->save();
 
-   
+    
     $user = User::find(auth()->id());
     if($user->role == 2){
-      $this->sendEmailNotificationUpdate($user);
+      $creator = Post::find($request->id);
+      $creator = User:: find($creator->user_id);
+      $creator->setAttribute('ip', $request->ip());
+      
+      $this->sendEmailNotificationUpdate($creator);
     }
 
    
@@ -111,11 +115,32 @@ class PostController extends Controller
   }
 
   private function sendEmailNotificationUpdate($user){
-
-    
-    
   
     $user->notify(new SendEmailUpdateEditors());
 
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

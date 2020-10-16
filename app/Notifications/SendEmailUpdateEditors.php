@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use DB;
+use App\Models\User;
 
 class SendEmailUpdateEditors extends Notification
 {
@@ -19,7 +20,7 @@ class SendEmailUpdateEditors extends Notification
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**
@@ -42,17 +43,15 @@ class SendEmailUpdateEditors extends Notification
     public function toMail($notifiable)
     {
 
-        $data = DB::table('users') 
-                ->join('sessions', 'users.id', '=', 'sessions.user_id')
-                ->join('posts', 'users.id', '=', 'posts.user_id')   
-                ->select( 'sessions.ip_address')
-                ->first();
+        
+        $user = User::find(auth()->id());
         $ldate = date('Y-m-d H:i:s');
+
         return (new MailMessage)
                     ->line('Informacion de los editores que realizaron cambios.')
-                    ->line('Nombre del editor: '. $notifiable->name)
-                    ->line('Direccion ip: ' . $data->ip_address)
+                    ->line('Nombre del editor: '. $user->name)
                     ->line('Fecha de la actualizacion: ' . $ldate)
+                    ->line('direccion ip: ' . $notifiable->ip)
                     ->line('Gracias!');
     }
 
