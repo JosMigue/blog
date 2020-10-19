@@ -64,7 +64,7 @@ class PostController extends Controller
     }
     $dataArrayPost = $this->buildArrayPostOnUpdate($request, $fileNameToStore);
     $post->update($dataArrayPost);
-    return redirect()->route('posts.index');
+    return redirect()->route('posts.index')->with('successMessage', __('Post updated sucessfully'));
   }
 
   private function buildArrayPostOnUpdate($request, $fileNameToStore){
@@ -80,7 +80,7 @@ class PostController extends Controller
       $post = Post::find($id);
       Storage::delete('public/cover_images/'.$post->image);
       $post->delete();
-      return redirect('/myposts');
+      return redirect()->route('posts.index')->with('successMessage', __('Post has been deleted sucessfully'));
 
   }
 }

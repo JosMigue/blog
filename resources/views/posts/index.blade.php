@@ -26,7 +26,7 @@
     </div>
       <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6 pb-2"> 
         {{-- <input type="text" class="form-input rounded shadow-sm mt-1 block w-full"> --}}
-        <div class="flex flex-row flex-wrap justify-between">
+        <div class="flex flex-row flex-wrap lg:justify-between justify-center">
           @if (count($posts) >= 1)
             @foreach ($posts as $post)
               <div class="max-w-sm w-full sm:w-1/2 lg:w-1/3 py-6 px-3">

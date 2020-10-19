@@ -27,7 +27,7 @@
               <tbody class="bg-white divide-y divide-gray-200">
                 @if ($users->count())
                   @foreach ($users as $user)                     
-                    <tr>
+                    <tr class="hover:bg-gray-100">
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="flex items-center">
                           <div class="flex-shrink-0 h-10 w-10">
@@ -71,7 +71,7 @@
                   @endforeach
                 @else
                 <td class="px-6 py-4 whitespace-no-wrap text-center" colspan="4">
-                  {{__('There is not results for search')}} "{{$search}}"
+                  {{__('There is not results for search')}} "{{$search}}" <i class="fa fa-frown-o" aria-hidden="true"></i>
                 </td>
                 @endif
               </tbody>
