@@ -41,7 +41,7 @@ class PostController extends Controller
     $extension = $request->file('image')->getClientOriginalExtension();
     $fileNameToStore = $filename .'_'.time().'.'.$extension;
     $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
-    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' => Auth::user()->id]));
+    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' => auth()->user()->id]));
     return redirect()->route('posts.index')->with('successMessage', __('Post added successfully'));
   }
 
