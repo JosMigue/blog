@@ -22,7 +22,7 @@
                         <i class="fa fa-book mr-2" aria-hidden="true"></i>{{ __('Posts') }} 
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('myposts') }}" :active="request()->routeIs('myposts')">
-                        {{ __('My Posts') }} 
+                        <i class="fa fa-angellist mr-2" aria-hidden="true"></i>{{ __('My Posts') }} 
                     </x-jet-nav-link>
                 </div>
 
@@ -46,8 +46,8 @@
                             {{ __('Manage Account') }}
                         </div>
 
-                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                            {{ __('Profile') }}
+                        <x-jet-dropdown-link href="{{ route('profile.show') }}" class="hover:bg-blue-500 hover:text-white">
+                            {{ __('Profile') }} <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
                         </x-jet-dropdown-link>
 
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -93,10 +93,10 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
+                            <x-jet-dropdown-link class="hover:bg-blue-500 hover:text-white" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Logout') }} <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </x-jet-dropdown-link>
                         </form>
                     </x-slot>
@@ -125,10 +125,10 @@
                 <i class="fa fa-user mr-2"></i>{{ __('Users') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
-                <i class="fa fa-book" aria-hidden="true"></i>{{ __('Posts') }} 
+                <i class="fa fa-book mr-2" aria-hidden="true"></i>{{ __('Posts') }} 
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('myposts') }}" :active="request()->routeIs('myposts')">
-                {{ __('My Posts') }} 
+                <i class="fa fa-angellist mr-2" aria-hidden="true"></i>{{ __('My Posts') }} 
             </x-jet-responsive-nav-link>
         </div>
 

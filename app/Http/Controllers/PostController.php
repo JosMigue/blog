@@ -20,14 +20,12 @@ class PostController extends Controller
 
   public function index()
   {
-    $posts = Post::all();
-    return view('posts.index', compact('posts'));
+    return view('posts.index');
   }
 
   public function mypost()
   {
-    $posts = Post::all();
-  
+    $posts = auth()->user()->posts()->get();
     return view('posts.myposts', compact('posts'));
   }
 
@@ -43,9 +41,8 @@ class PostController extends Controller
     $extension = $request->file('image')->getClientOriginalExtension();
     $fileNameToStore = $filename .'_'.time().'.'.$extension;
     $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
-
-    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' =>  auth()->user()->id ]) );
-    return redirect('/posts');
+    Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' => Auth::user()->id]));
+    return redirect()->route('posts.index')->with('successMessage', __('Post added successfully'));
   }
 
   public function show($id)
@@ -60,8 +57,9 @@ class PostController extends Controller
     return view('posts.edit')->with('post', $post);
   }
 
-  public function update(CreateUpdatePostRequest $request)
-  {   
+  public function update(CreateUpdatePostRequest $request, Post $post)
+  {
+    $fileNameToStore = $post->image;
     if($request->hasFile('image')){
       $filenameWithExt = $request->file('image')->getClientOriginalName();
       $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -69,27 +67,24 @@ class PostController extends Controller
       $fileNameToStore = $filename .'_'.time().'.'.$extension;
       $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
     }
-    $id = $request->input('id');
-    $post = Post::find($id);
-    $post->title = $request->input('title');
-    $post->body = $request->input('body');
-    if($request->hasFile('image')){
-        $post->image = $fileNameToStore;
-    }
-    $post->save();
-
-    $user = User::find(auth()->id());
-
-    if($user->role == 2){
+    $dataArrayPost = $this->buildArrayPostOnUpdate($request, $fileNameToStore);
+    $post->update($dataArrayPost);
+    if(auth()->user()->role == 2){
       $creator = Post::find($request->id);
       $creator = User:: find($creator->user_id);
       $creator->setAttribute('ip', $request->ip());
       $creator->setAttribute('editorName', $user->name);
-      
       $this->sendEmailNotificationUpdate($creator);
     }
+    return redirect()->route('posts.index')->with('successMessage', __('Post updated sucessfully'));
+  }
 
-    return redirect()->route('posts.index');
+  private function buildArrayPostOnUpdate($request, $fileNameToStore){
+    return $postDataToUpdate = [
+      'title' => $request->validated()['title'],
+      'body' => $request->validated()['body'],
+      'image' => $fileNameToStore
+    ];
   }
 
   public function destroy($id)
@@ -98,7 +93,7 @@ class PostController extends Controller
       $post = Post::find($id);
       Storage::delete('public/cover_images/'.$post->image);
       $post->delete();
-      return redirect('/myposts');
+      return redirect()->route('posts.index')->with('successMessage', __('Post has been deleted sucessfully'));
 
   }
 
