@@ -33,3 +33,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/myposts', 'PostController
 
 
 Route::resource('posts', 'PostController');
+
+
