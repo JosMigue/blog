@@ -17,20 +17,6 @@
                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{$post->title}}</h2>
                 <p class="leading-relaxed text-base">{{$post->body}}</p>
               </div>
-              <div class="flex justify-evenly">
-                @if (Auth::user()->role == 1)
-                <form action="{{route('posts.destroy', $post->id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button class="shadow bg-pink-500 hover:bg-pink-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-20 m-2" type="submit" >
-                    {{__('Delete')}}
-                  </button>
-                </form>
-                @endif
-                <a href="{{route('posts.edit',$post->id)}}" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-20 m-2" type="button">
-                  {{__('Edit')}}
-                </a>
-              </div>
             </div>
           @endforeach
         </div>

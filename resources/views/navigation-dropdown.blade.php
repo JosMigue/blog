@@ -15,15 +15,19 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }} 
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                        <i class="fa fa-user mr-2"></i>{{ __('Users') }}
-                    </x-jet-nav-link>
+                    @if (Auth::user()->role != 2)
+                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                            <i class="fa fa-user mr-2"></i>{{ __('Users') }}
+                        </x-jet-nav-link>
+                    @endif
                     <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                         <i class="fa fa-book mr-2" aria-hidden="true"></i>{{ __('Posts') }} 
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('myposts') }}" :active="request()->routeIs('myposts')">
-                        <i class="fa fa-angellist mr-2" aria-hidden="true"></i>{{ __('My Posts') }} 
-                    </x-jet-nav-link>
+                    @if (Auth::user()->role != 2)
+                        <x-jet-nav-link href="{{ route('myposts') }}" :active="request()->routeIs('myposts')">
+                            <i class="fa fa-angellist mr-2" aria-hidden="true"></i>{{ __('My Posts') }} 
+                        </x-jet-nav-link>
+                    @endif
                 </div>
 
                 
@@ -121,15 +125,19 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                <i class="fa fa-user mr-2"></i>{{ __('Users') }}
-            </x-jet-responsive-nav-link>
+            @if (Auth::user()->role != 2)
+                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                    <i class="fa fa-user mr-2"></i>{{ __('Users') }}
+                </x-jet-responsive-nav-link>
+            @endif
             <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                 <i class="fa fa-book mr-2" aria-hidden="true"></i>{{ __('Posts') }} 
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('myposts') }}" :active="request()->routeIs('myposts')">
-                <i class="fa fa-angellist mr-2" aria-hidden="true"></i>{{ __('My Posts') }} 
-            </x-jet-responsive-nav-link>
+            @if (Auth::user()->role != 2)
+                <x-jet-responsive-nav-link href="{{ route('myposts') }}" :active="request()->routeIs('myposts')">
+                    <i class="fa fa-angellist mr-2" aria-hidden="true"></i>{{ __('My Posts') }} 
+                </x-jet-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

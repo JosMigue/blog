@@ -35,8 +35,20 @@
                           <p class="text-sm text-gray-700">{{$post->user->email}}</p>
                         </div>
                     </div>
-                    <div class="flex justify-center border-t border-gray-300 bg-gray-100 px-4 pt-3 pb-4">
-                      <a class="py-2 px-4 bg-indigo-500 text-white rounded font-bold hover:bg-indigo-400 hover:no-underline" href="{{route('posts.show', $post->id)}}">{{__('Show post')}}</a>
+                    <div class="flex justify-evenly border-t border-gray-300 bg-gray-100 px-4 pt-3 pb-4">
+                      <a class="py-2 px-4 bg-indigo-500 text-white rounded font-bold hover:bg-indigo-400 hover:no-underline" href="{{route('posts.show', $post->id)}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                      @if (Auth::user()->role == 1)
+                        <form action="{{route('posts.destroy', $post->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button class="py-2 px-4 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-400" type="submit" >
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
+                        </form>
+                      @endif
+                      <a href="{{route('posts.edit',$post->id)}}" class="py-2 px-4 bg-blue-500 text-white rounded font-bold hover:bg-blue-400 hover:no-underline" type="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </a>
                     </div>
                 </div>
             </div>
