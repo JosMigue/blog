@@ -40,9 +40,6 @@ class SendEmailUpdateEditors extends Notification
      */
     public function toMail($notifiable)
     {
-
-        
-        
         $ldate = date('Y-m-d H:i:s');
 
         return (new MailMessage)
