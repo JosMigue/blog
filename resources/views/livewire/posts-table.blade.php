@@ -35,8 +35,8 @@
                           <p class="text-sm text-gray-700">{{$post->user->email}}</p>
                         </div>
                     </div>
-                    <div class="flex justify-end">
-                      <a class="py-2 px-4 bg-transparent text-purple-500 font-bold hover:text-purple-400 hover:no-underline" href="{{route('posts.show', $post->id)}}">{{__('Show post')}}</a>
+                    <div class="flex justify-center border-t border-gray-300 bg-gray-100 px-4 pt-3 pb-4">
+                      <a class="py-2 px-4 bg-indigo-500 text-white rounded font-bold hover:bg-indigo-400 hover:no-underline" href="{{route('posts.show', $post->id)}}">{{__('Show post')}}</a>
                     </div>
                 </div>
             </div>

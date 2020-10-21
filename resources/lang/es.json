@@ -34,6 +34,7 @@
     "For your security, please confirm your password to continue.": "Antes de continuar, por favor ingresa tu contraseña por seguridad.",
     "Forgot your password?": "¿Olvidó su contraseña?",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "¿Olvidó su contraseña?, No hay problema. Solo ingrese su dirección de correo electrónico y le enviaremos un código para restablecerla.",
+    "Go Back": "Volver",
     "Go Home": "Ir a inicio",
     "Hello!": "¡Hola!",
     "If necessary, you may logout of all of your other browser sessions across all of your devices. If you feel your account has been compromised, you should also update your password.": "En caso de ser necesario, tienes la posibilidad de cerrar tu sesión de todos tus dispositivos. Si sientes que tu cuenta está insegura, te recomendamos que cambies tu contraseña.",
@@ -99,6 +100,7 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Guarde estos códigos de recuperación en un administrador de contraseñas seguro. Se pueden utilizar para recuperar el acceso a su cuenta si pierde su dispositivo de autenticación de dos pasos.",
     "Switch Teams": "Cambiar de equipo",
     "Show Recovery Codes": "Mostrar códigos de recuperación",
+    "Show post": "Mostrar publicación",
     "Showing": "Mostrando",
     "Something went wrong, try again later": "Algo salió mal, intente más tarde",
     "Team Settings": "Configuración de los equipos",
@@ -136,6 +138,7 @@
     "You have enabled two factor authentication.": "La autenticación de dos pasos está activada.",
     "You have not enabled two factor authentication.": "No tienes activada la autenticación de dos pasos.",
     "Written": "Escrito",
+    "Written at": "Escrito el",
     "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.": "Cuando la autenticación de dos pasos está habilitada, se le pedirá un token aleatorio seguro durante la autenticación. Puede obtener este token desde aplicación Google Authenticator de su teléfono.",
     "Whoops! Something went wrong.": "¡Vaya!, Algo salió mal.",
     "Whoops!": "¡Vaya!"

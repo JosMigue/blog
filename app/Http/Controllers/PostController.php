@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -19,7 +20,7 @@ class PostController extends Controller
 
   public function mypost()
   {
-    $posts = Post::all();
+    $posts = auth()->user()->posts()->get();
     return view('posts.myposts', compact('posts'));
   }
 
