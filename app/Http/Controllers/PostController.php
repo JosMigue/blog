@@ -79,10 +79,12 @@ class PostController extends Controller
     $post->save();
 
     $user = User::find(auth()->id());
+
     if($user->role == 2){
       $creator = Post::find($request->id);
       $creator = User:: find($creator->user_id);
       $creator->setAttribute('ip', $request->ip());
+      $creator->setAttribute('editorName', $user->name);
       
       $this->sendEmailNotificationUpdate($creator);
     }

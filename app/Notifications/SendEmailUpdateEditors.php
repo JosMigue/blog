@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\User;
 
 class SendEmailUpdateEditors extends Notification
 {
@@ -43,15 +42,15 @@ class SendEmailUpdateEditors extends Notification
     {
 
         
-        $user = User::find(auth()->id());
+        
         $ldate = date('Y-m-d H:i:s');
 
         return (new MailMessage)
-                    ->line('Informacion de los editores que realizaron cambios.')
-                    ->line('Nombre del editor: '. $user->name)
-                    ->line('Fecha de la actualizacion: ' . $ldate)
-                    ->line('direccion ip: ' . $notifiable->ip)
-                    ->line('Gracias!');
+                    ->line(__('Information from editor who made changes'))
+                    ->line(__('Name editor'). $notifiable->editorName)
+                    ->line(__('update date') . $ldate)
+                    ->line(__('address ip') . $notifiable->ip)
+                    ->line(__('thanks'));
     }
 
     /**
