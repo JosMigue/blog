@@ -73,7 +73,7 @@ class PostController extends Controller
       $creator = Post::find($request->id);
       $creator = User:: find($creator->user_id);
       $creator->setAttribute('ip', $request->ip());
-      $creator->setAttribute('editorName', $user->name);
+      $creator->setAttribute('editorName', auth()->user()->name);
       $this->sendEmailNotificationUpdate($creator);
     }
     return redirect()->route('posts.index')->with('successMessage', __('Post updated sucessfully'));
