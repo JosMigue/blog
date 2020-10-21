@@ -27,11 +27,7 @@ class PostController extends Controller
   public function mypost()
   {
     $posts = Post::all();
-
-  //  $user = User::find(auth()->id());
-    
-
-
+  
     return view('posts.myposts', compact('posts'));
   }
 
@@ -42,15 +38,11 @@ class PostController extends Controller
 
   public function store(CreatePostRequest $request)
   {
-
-   
     $filenameWithExt = $request->file('image')->getClientOriginalName();
     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
     $extension = $request->file('image')->getClientOriginalExtension();
     $fileNameToStore = $filename .'_'.time().'.'.$extension;
     $path = $request->file('image')->storeAs('public/cover_images',$fileNameToStore);
-
-
 
     Post::create(array_merge($request->validated(), ['image' => $fileNameToStore, 'user_id' =>  auth()->user()->id ]) );
     return redirect('/posts');
@@ -69,10 +61,7 @@ class PostController extends Controller
   }
 
   public function update(CreateUpdatePostRequest $request)
-  {
-
-    
-    
+  {   
     if($request->hasFile('image')){
       $filenameWithExt = $request->file('image')->getClientOriginalName();
       $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -89,7 +78,6 @@ class PostController extends Controller
     }
     $post->save();
 
-    
     $user = User::find(auth()->id());
     if($user->role == 2){
       $creator = Post::find($request->id);
@@ -98,8 +86,6 @@ class PostController extends Controller
       
       $this->sendEmailNotificationUpdate($creator);
     }
-
-   
 
     return redirect()->route('posts.index');
   }
@@ -120,27 +106,4 @@ class PostController extends Controller
 
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
