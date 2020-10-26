@@ -48,12 +48,17 @@
                 </div>
               </div>
             @endforeach
-            
-
-           
-           
+       
           </div>
+          
+
+          <div class="m-5">
+            {{ $posts->links() }}
+          </div>
+         
+           
         </div>
+        
         <div class="-z-10 absolute bottom-0 right-0 w-48 h-48 transform -translate-y-8 opacity-25">
           <img src="../img/icons/svg-decorator-blob-1.svg" alt="">
         </div>
@@ -61,6 +66,9 @@
           <img src="../img/icons/svg-decorator-blob-3.svg" alt="">
         </div>
       </div>
+
+
+      
 </x-guest-layout>
 
 <x-footer></x-footer>

@@ -13,7 +13,7 @@ class LandingPageController extends Controller
 
         $posts = User::select('*')
                 ->join('posts', 'users.id', '=', 'posts.user_id')
-                ->get();
+                ->paginate(6);
         
         
         return view('blog.blog', compact('posts'));
