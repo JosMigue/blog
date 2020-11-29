@@ -4,13 +4,13 @@
           <!-- Heading -->
           <div class="flex flex-col items-center">
             <h5 class="font-bold text-purple-500">
-              Blog
+              {{__('Our blog')}}
             </h5>
             <h2 class="text-4xl sm:text-5xl font-black tracking-wide text-center">
-              We Love <span class="text-purple-500">Writing.</span>
+              {{__('We Love')}} <span class="text-purple-500">{{__('Writing.')}}</span>
             </h2>
             <p class="mt-4 font-medium text-gray-600 text-center max-w-sm">
-              Some amazing blog posts that are written by even more amazing people.
+              {{__('Some amazing blog posts that are written by even more amazing people.')}}
             </p>
 
             <div class="flex justify-center lg:justify-start mt-6">
