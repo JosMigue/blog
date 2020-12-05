@@ -8,14 +8,13 @@ use App\Models\User;
 class LandingPageController extends Controller
 {
     public function index(){
-
-    
-
-        $posts = User::select('*')
-                ->join('posts', 'users.id', '=', 'posts.user_id')
-                ->paginate(6);
-        
-        
+        $posts = Post::with('user')->paginate(6);
         return view('blog.blog', compact('posts'));
+    }
+    
+    public function show($post_name){
+        $post_name = strtr($post_name, "-", " ");
+        $post = Post::where('title', $post_name)->first();
+        return view('blog.show', compact('post'));
     }
 }

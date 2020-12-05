@@ -30,11 +30,11 @@
                     <div class="flex items-center">
                       <div class="text-secondary-100 font-medium text-sm flex items-center leading-none mr-6 last:mr-0">
                         <i class="fa fa-user mr-1" aria-hidden="true"></i>
-                      <div>{{$post->name}}</div>
+                      <div>{{$post->user->name}}</div>
                       </div>
                       <div class="text-secondary-100 font-medium text-sm flex items-center leading-none mr-6 last:mr-0">
                         <i class="fa fa-tag mr-1" aria-hidden="true"></i>
-                        <div>{{$post->email}}</div>
+                        <div>{{$post->user->email}}</div>
                       </div>
                     </div>
                     <h5 class="mt-4 leading-snug font-bold text-lg">
@@ -43,7 +43,7 @@
                     <p class="mt-2 text-sm text-secondary-100">
                         {{$post->body}}
                     </p>
-                    <a href="" class="inline-block px-8 py-2 mt-2 font-bold rounded bg-indigo-500 text-gray-100 hocus:bg-indigo-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300">Read post</a>
+                    <a href="{{route('landing.show', ['postName' => strtr($post->title, " ", "-")])}}" class="inline-block px-8 py-2 mt-2 font-bold rounded bg-indigo-500 text-gray-100 hocus:bg-indigo-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300">Read post</a>
                   </div>
                 </div>
               </div>
