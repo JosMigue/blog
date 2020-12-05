@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LandingPageController@index');
 Route::get('/posts/{postName}', 'LandingPageController@show')->name('landing.show');
+Route::get('/autors/{user}', 'LandingPageController@showAUthor')->name('landing.showAuthor');
 
 
 Route::get('/login', function () {

@@ -17,4 +17,8 @@ class LandingPageController extends Controller
         $post = Post::where('title', $post_name)->first();
         return view('blog.show', compact('post'));
     }
+
+    public function showAUthor(User $user){
+        return view('author.show', compact('user'));
+    }
 }
