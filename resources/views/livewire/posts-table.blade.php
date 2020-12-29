@@ -12,7 +12,7 @@
                 </div>
                 <div class="p-4">
                   <p class="uppercase tracking-wide text-sm font-bold text-gray-700">{{$post->title}}</p>
-                  <p class="text-gray-700">{{$post->body}}</p>
+                  <p class="text-gray-700 text-justify">{{$post->body}}</p>
                 </div>
                 <div class="flex p-4 border-t border-gray-300 text-gray-700">
                     <div class="flex-1 inline-flex items-center">

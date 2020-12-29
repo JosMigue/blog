@@ -15,8 +15,8 @@ class CreatePostRequest extends FormRequest
   {
     return [
       'title'  => 'required|string|max:255',
-      'body' => 'required|string|max:255',
-      'image' => 'required|image|nullable|max:1999| mimes:jpeg,jpg,png',
+      'body' => 'required|string',
+      'image' => 'required|image|nullable|max:2500| mimes:jpeg,jpg,png',
       'user_id' =>  'integer'
     ];
   }
